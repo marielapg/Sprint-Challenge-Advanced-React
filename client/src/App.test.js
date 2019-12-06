@@ -1,9 +1,28 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './App';
+import PCard from "./Components/PCard";
+import {render} from "@testing-library/react";
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+test ('renders without crashing', () => {
+  renders(<App/>);
+
 });
+
+test('it renders person name', ()=> {  
+  const {getByName} = render(<PCard/>)
+  getByTestId(/nameprint/i)
+  expect(getByName.children.length).toBe(1);
+})
+
+test('it renders person country', ()=> {  
+  const {getByCountry} = render(<PCard/>)
+  getByTestId(/countryprint/i)
+  expect(getByCountry.children.length).toBe(1);
+})
+
+test('it renders person searches', ()=> {  
+  const {getBySearches} = render(<PCard/>)
+  getByTestId(/searchesprint/i)
+  expect(getBySearches.children.length).toBe(1);
+})
+
